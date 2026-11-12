@@ -1,0 +1,5 @@
+﻿data,origem,pergunta,id_orientacao,encontrou,ajudou,tentativas,tempo_segundos
+2026-11-12 19:07:27,pergunta,qual salario esta oferencemdo?,,False,False,2,54.0
+2026-11-12 19:07:56,categoria,Documentos,1,True,True,1,16.5
+2026-11-12 19:08:10,categoria,Documentos,2,True,True,1,14.0
+2026-11-12 19:08:22,categoria,Documentos,3,True,True,1,12.1
