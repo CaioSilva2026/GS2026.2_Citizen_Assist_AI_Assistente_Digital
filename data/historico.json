@@ -1,0 +1,42 @@
+[
+  {
+    "data": "2026-11-12 19:07:27",
+    "origem": "pergunta",
+    "pergunta": "qual salario esta oferencemdo?",
+    "id_orientacao": null,
+    "encontrou": false,
+    "ajudou": false,
+    "tentativas": 2,
+    "tempo_segundos": 54.0
+  },
+  {
+    "data": "2026-11-12 19:07:56",
+    "origem": "categoria",
+    "pergunta": "Documentos",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo_segundos": 16.5
+  },
+  {
+    "data": "2026-11-12 19:08:10",
+    "origem": "categoria",
+    "pergunta": "Documentos",
+    "id_orientacao": 2,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo_segundos": 14.0
+  },
+  {
+    "data": "2026-11-12 19:08:22",
+    "origem": "categoria",
+    "pergunta": "Documentos",
+    "id_orientacao": 3,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo_segundos": 12.1
+  }
+]
