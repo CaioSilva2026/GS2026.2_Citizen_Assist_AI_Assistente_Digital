@@ -12,9 +12,8 @@ PALAVRAS_IGNORADAS = {
     "por", "tem", "ser", "fazer"
 }
 
-
 def normalizar(texto):
-    """Minúsculas, sem acentos e sem pontuação, com espaço nas pontas."""
+
     texto = texto.lower().strip()
     texto = unicodedata.normalize("NFD", texto)
     texto = "".join(
@@ -26,7 +25,7 @@ def normalizar(texto):
 
 
 def radical(palavra):
-    """Tira o plural simples, para 'golpes' casar com 'golpe'."""
+
     if palavra.endswith("es") and len(palavra) >= 8:
         return palavra[:-2]
     if palavra.endswith("s") and len(palavra) >= 5:
@@ -35,7 +34,6 @@ def radical(palavra):
 
 
 def preparar(texto):
-    """normalizar() + plural simples em cada palavra."""
     palavras = normalizar(texto).split()
     return " " + " ".join(radical(p) for p in palavras) + " "
 

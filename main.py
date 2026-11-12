@@ -65,7 +65,6 @@ def main():
             print("\n" + "=" * 60)
             print("Antes de sair, conte como foi sua experiência.")
             assistente.pedir_nota()
-            # Exporta os atendimentos antes de encerrar.
             assistente.exportar_csv()
             print("\nObrigado por utilizar o Nexo!")
             print("Sua opinião ajuda a melhorar o assistente.")
