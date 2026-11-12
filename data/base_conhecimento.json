@@ -1,0 +1,296 @@
+[
+  {
+    "id": 1,
+    "categoria": "Documentos",
+    "titulo": "Ativar a Carteira de Trabalho Digital",
+    "palavras_chave": [
+      "carteira de trabalho",
+      "carteira de trabalho digital",
+      "ctps",
+      "carteira digital",
+      "carteira assinada",
+      "tirar carteira de trabalho",
+      "documentos para trabalhar",
+      "documentos para o primeiro emprego",
+      "o que preciso para trabalhar",
+      "carteira de trabalho de papel",
+      "carteira de trabalho fisica"
+    ],
+    "resposta": "A Carteira de Trabalho Digital já vem emitida para quem tem CPF, é só habilitar. Baixe o app Carteira de Trabalho Digital (Android e iOS) ou entre pelo site gov.br e faça login com a sua conta gov.br. É gratuito. O número da carteira é o seu CPF. Na hora da contratação, basta informar o CPF para a empresa.",
+    "documentos": [
+      "CPF",
+      "Conta gov.br"
+    ],
+    "onde": "App Carteira de Trabalho Digital ou site gov.br",
+    "fonte": "https://www.gov.br/pt-br/servicos/obter-a-carteira-de-trabalho",
+    "verificado_em": "2026-11-11"
+  },
+  {
+    "id": 2,
+    "categoria": "Documentos",
+    "titulo": "Tirar o título de eleitor",
+    "palavras_chave": [
+      "titulo de eleitor",
+      "tirar titulo",
+      "titulo eleitoral",
+      "titulo net",
+      "alistamento eleitoral",
+      "votar",
+      "titulo",
+      "eleitor"
+    ],
+    "resposta": "Dá para pedir o primeiro título a partir dos 15 anos, mas só vota quem tem 16 anos até o dia da eleição. O voto é facultativo aos 16 e 17 anos e obrigatório a partir dos 18. O pedido é gratuito, feito pela internet no sistema Título Net, da Justiça Eleitoral, ou presencialmente no cartório eleitoral, com agendamento.",
+    "documentos": [
+      "Documento oficial com foto",
+      "Comprovante de residência",
+      "Homens a partir dos 18 anos: comprovante de quitação do serviço militar, se for exigido"
+    ],
+    "onde": "Título Net, no site do TSE (tse.jus.br), ou cartório eleitoral",
+    "fonte": "https://www.tse.jus.br/comunicacao/noticias/2022/Dezembro/ainda-nao-tem-titulo-de-eleitor-emita-o-documento-de-forma-gratuita-e-sem-sair-de-casa",
+    "verificado_em": "2026-11-11"
+  },
+  {
+    "id": 3,
+    "categoria": "Documentos",
+    "titulo": "Consultar a situação do CPF e pegar o comprovante",
+    "palavras_chave": [
+      "comprovante de cpf",
+      "situacao do cpf",
+      "irregular",
+      "cpf irregular",
+      "cpf esta irregular",
+      "regularizar cpf",
+      "regularizar o cpf",
+      "segunda via do cpf",
+      "consultar cpf",
+      "cpf pendente",
+      "tirar cpf",
+      "fazer cpf",
+      "cpf cancelado",
+      "cpf suspenso",
+      "cpf bloqueado"
+    ],
+    "resposta": "Você pode consultar a situação do seu CPF e emitir o comprovante de inscrição de graça, no site da Receita Federal. Se houver pendência, é preciso regularizar o cadastro. A Receita não emite mais o cartão de papel do CPF, pois o número já aparece em outros documentos, como RG e CNH.",
+    "documentos": [
+      "Número do CPF"
+    ],
+    "onde": "Site da Receita Federal (gov.br/receitafederal)",
+    "fonte": "https://www.gov.br/receitafederal/pt-br",
+    "verificado_em": "2026-11-11"
+  },
+  {
+    "id": 4,
+    "categoria": "Trabalho e direitos",
+    "titulo": "Entrar no mercado como Jovem Aprendiz",
+    "palavras_chave": [
+      "jovem aprendiz",
+      "menor aprendiz",
+      "contrato de aprendizagem",
+      "aprendiz",
+      "primeiro emprego aos 14",
+      "programa de aprendizagem",
+      "tenho 14 anos",
+      "tenho 15 anos",
+      "tenho 16 anos",
+      "tenho 17 anos",
+      "sem experiencia",
+      "menor de idade",
+      "posso trabalhar",
+      "idade para trabalhar",
+      "idade minima para trabalhar"
+    ],
+    "resposta": "O contrato de Jovem Aprendiz é um contrato especial, com duração de até 2 anos, para quem tem de 14 a 24 anos. A pessoa trabalha com carteira assinada e faz um curso de aprendizagem ao mesmo tempo. Quem ainda não terminou o ensino médio precisa estar matriculado e frequentando a escola. Pessoas com deficiência não têm limite de idade nem de duração.",
+    "documentos": [
+      "Comprovante de matrícula e frequência escolar (se não terminou o ensino médio)",
+      "Inscrição em programa de aprendizagem",
+      "Comprovante de residência (a empresa ou a instituição pode pedir)"
+    ],
+    "onde": "Instituições de aprendizagem e empresas que contratam aprendizes",
+    "fonte": "https://www.trt4.jus.br/portais/trt4/jovem-aprendiz",
+    "verificado_em": "2026-11-11"
+  },
+  {
+    "id": 5,
+    "categoria": "Trabalho e direitos",
+    "titulo": "Conferir se a empresa registrou meu contrato",
+    "palavras_chave": [
+      "empresa registrou",
+      "meu contrato",
+      "vinculo de trabalho",
+      "fui registrado",
+      "registro na carteira",
+      "salario registrado",
+      "trabalho sem registro",
+      "trabalhar sem registro",
+      "trabalho informal",
+      "empresa nao assinou",
+      "nao assinaram minha carteira",
+      "nao assinou",
+      "assinou minha carteira"
+    ],
+    "resposta": "Depois de contratado, abra a Carteira de Trabalho Digital e veja se o seu vínculo, o contrato e o salário aparecem. Esses dados são enviados pela empresa. Se algo estiver errado ou o registro não aparecer, fale com o setor de pessoal da empresa e, se não resolver, procure o Ministério do Trabalho e Emprego pelo telefone 158.",
+    "documentos": [
+      "CPF",
+      "Conta gov.br"
+    ],
+    "onde": "App Carteira de Trabalho Digital ou site gov.br",
+    "fonte": "https://www.gov.br/pt-br/servicos/obter-a-carteira-de-trabalho",
+    "verificado_em": "2026-11-11"
+  },
+  {
+    "id": 6,
+    "categoria": "Trabalho e direitos",
+    "titulo": "Falar com o Ministério do Trabalho: dúvidas e denúncias",
+    "palavras_chave": [
+      "ministerio do trabalho",
+      "ligue 158",
+      "158",
+      "direitos trabalhistas",
+      "denunciar empresa",
+      "justica do trabalho",
+      "meus direitos",
+      "direitos do trabalhador",
+      "denunciar patrao",
+      "empresa nao cumpre"
+    ],
+    "resposta": "Para tirar dúvidas ou fazer denúncias sobre o trabalho, ligue para o 158, do Ministério do Trabalho e Emprego, ou use o canal Fale Conosco no site. Se a empresa não cumprir seus direitos, como depositar o FGTS, também é possível buscar a Justiça do Trabalho ou um sindicato.",
+    "documentos": [],
+    "onde": "Telefone 158 ou site do Ministério do Trabalho e Emprego",
+    "fonte": "https://www.gov.br/trabalho-e-emprego/pt-br",
+    "verificado_em": "2026-11-11"
+  },
+  {
+    "id": 7,
+    "categoria": "Salário e benefícios",
+    "titulo": "Conferir se o FGTS está sendo depositado",
+    "palavras_chave": [
+      "fgts",
+      "fundo de garantia",
+      "deposito do fgts",
+      "extrato do fgts",
+      "app fgts",
+      "empresa nao depositou"
+    ],
+    "resposta": "O FGTS é um dinheiro que a empresa deposita todo mês em uma conta em seu nome na Caixa. O valor é de 8% do salário bruto (2% para Jovem Aprendiz) e não é descontado do seu salário. Para conferir, abra o extrato no aplicativo FGTS e veja se há um depósito para cada mês trabalhado.",
+    "documentos": [
+      "CPF",
+      "Conta gov.br"
+    ],
+    "onde": "Aplicativo FGTS ou site da Caixa Econômica Federal",
+    "fonte": "https://www.caixa.gov.br/beneficios-trabalhador/fgts/",
+    "verificado_em": "2026-11-11"
+  },
+  {
+    "id": 8,
+    "categoria": "Salário e benefícios",
+    "titulo": "Pedir o seguro-desemprego",
+    "palavras_chave": [
+      "seguro desemprego",
+      "seguro-desemprego",
+      "fui demitido",
+      "demitido sem justa causa",
+      "mandado embora",
+      "perdi o emprego",
+      "demissao",
+      "demitido",
+      "demitida",
+      "me demitiram",
+      "fui demitida"
+    ],
+    "resposta": "O seguro-desemprego é para quem foi demitido sem justa causa. O pedido pode ser feito do 7º ao 120º dia depois da demissão, pelo portal gov.br ou pelo app Carteira de Trabalho Digital. Para quem pede pela primeira vez, é preciso ter trabalhado 12 meses; na segunda vez, 9 meses; da terceira em diante, 6 meses. Confira a regra atual no site oficial.",
+    "documentos": [
+      "CPF",
+      "Documento do requerimento do seguro-desemprego entregue pela empresa na demissão"
+    ],
+    "onde": "Portal gov.br ou app Carteira de Trabalho Digital",
+    "fonte": "https://www.gov.br/trabalho-e-emprego/pt-br",
+    "verificado_em": "2026-11-11"
+  },
+  {
+    "id": 9,
+    "categoria": "Salário e benefícios",
+    "titulo": "Entender o 13º salário",
+    "palavras_chave": [
+      "13 salario",
+      "13o salario",
+      "decimo terceiro",
+      "decimo terceiro salario",
+      "gratificacao natalina",
+      "decimo 3",
+      "salario extra"
+    ],
+    "resposta": "O 13º salário é um direito de quem trabalha com carteira assinada: é um salário a mais por ano, pago pela empresa. Em geral é pago em duas parcelas: a primeira até 30 de novembro e a segunda até 20 de dezembro. Quem trabalhou só uma parte do ano recebe o valor proporcional aos meses trabalhados. Se a empresa atrasar ou não pagar, procure o Ministério do Trabalho e Emprego pelo 158 ou um sindicato.",
+    "documentos": [],
+    "onde": "Pago pela empresa; dúvidas ou denúncias no Ministério do Trabalho e Emprego (158)",
+    "fonte": "https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2024/Dezembro/decimo-terceiro-salario-entenda-o-direito-regras-e-prazos-de-pagamento",
+    "verificado_em": "2026-11-12"
+  },
+  {
+    "id": 10,
+    "categoria": "Salário e benefícios",
+    "titulo": "Entender o direito a férias",
+    "palavras_chave": [
+      "ferias",
+      "direito a ferias",
+      "tirar ferias",
+      "terco de ferias",
+      "um terco de ferias",
+      "descanso remunerado"
+    ],
+    "resposta": "Quem tem carteira assinada tem direito a 30 dias de férias depois de cada 12 meses de trabalho. Além do salário, a pessoa recebe um terço a mais. O pagamento deve ser feito até 2 dias antes de as férias começarem. Quem escolhe a data é a empresa, e as férias podem ser divididas em até 3 períodos, se a pessoa concordar e um deles tiver pelo menos 14 dias. Se o direito não for respeitado, procure o 158 ou um sindicato.",
+    "documentos": [],
+    "onde": "Pago pela empresa; dúvidas no Ministério do Trabalho e Emprego (158)",
+    "fonte": "https://www.gov.br/trabalho-e-emprego/pt-br",
+    "verificado_em": "2026-11-12"
+  },
+  {
+    "id": 11,
+    "categoria": "Golpes e segurança",
+    "titulo": "Reconhecer uma vaga de emprego falsa",
+    "palavras_chave": [
+      "vaga falsa",
+      "golpe de emprego",
+      "golpe da vaga",
+      "taxa de admissao",
+      "pagar para trabalhar",
+      "pediram dinheiro",
+      "golpe",
+      "vaga suspeita",
+      "oferta de emprego falsa",
+      "pediu dinheiro",
+      "pediu taxa",
+      "cobrou taxa",
+      "cobram taxa",
+      "taxa para trabalhar"
+    ],
+    "resposta": "Vaga de emprego não tem custo. Desconfie se pedirem dinheiro para inscrição, exame admissional, curso ou material de trabalho. Outros sinais são pressa para pagar, salário muito acima do normal para uma função simples e contato só por canais não oficiais. Confirme a vaga no site oficial da empresa e nunca passe dados bancários para desconhecidos.",
+    "documentos": [],
+    "onde": "Site oficial da empresa; dúvidas pelo 158 (Ministério do Trabalho e Emprego)",
+    "fonte": "https://www.gov.br/trabalho-e-emprego/pt-br",
+    "verificado_em": "2026-11-11"
+  },
+  {
+    "id": 12,
+    "categoria": "Golpes e segurança",
+    "titulo": "Denunciar um golpe de falsa vaga de emprego",
+    "palavras_chave": [
+      "denunciar golpe",
+      "caí em um golpe",
+      "fui vitima de golpe",
+      "boletim de ocorrencia",
+      "fui enganado",
+      "ministerio publico do trabalho",
+      "vitima de um golpe",
+      "fui golpeado",
+      "me enganaram",
+      "me aplicaram um golpe"
+    ],
+    "resposta": "Se você caiu em um golpe de falsa vaga, registre um boletim de ocorrência em uma delegacia. Você também pode ligar para o 158 ou fazer a denúncia no site do Ministério Público do Trabalho (mpt.mp.br), escolhendo o seu estado. Avise a empresa cujo nome foi usado e denuncie o anúncio na plataforma onde ele apareceu.",
+    "documentos": [
+      "Prints das conversas e comprovantes de pagamento, se houver"
+    ],
+    "onde": "Delegacia, telefone 158 ou site do Ministério Público do Trabalho",
+    "fonte": "https://www.mpt.mp.br",
+    "verificado_em": "2026-11-11"
+  }
+]
