@@ -71,6 +71,5 @@ def main():
             print("Sua opinião ajuda a melhorar o assistente.")
             print("=" * 60)
             break
-
 if __name__ == "__main__":
     main()
