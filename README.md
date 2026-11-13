@@ -25,7 +25,11 @@ A informação existe, mas está espalhada em vários sites, em linguagem técni
 **Nossa solução:** o Nexo reúne essas orientações em **linguagem simples**, mostra a **fonte oficial** de cada uma, diz **quando a informação foi conferida** e deixa claro que **não é um canal oficial**.
 
 ---
-
+## ODS relacionados
+ODS 8 – Trabalho decente e crescimento econômico: facilita o acesso ao emprego formal e aos direitos trabalhistas.
+ODS 10 – Redução das desigualdades: informação clara e gratuita para quem tem menos acesso a orientação.
+ODS 16 – Paz, justiça e instituições eficazes: acesso à informação e orientação sobre como denunciar golpes.
+---
 ## Como executar
 
 Requisitos: **Python 3.8 ou superior**. Não precisa instalar nenhuma biblioteca (só a biblioteca padrão).
@@ -293,14 +297,6 @@ Todas as respostas vêm de fontes oficiais, conferidas pela equipe em **11/11/20
 - **As alternativas só mostram o título.** A pessoa vê as outras orientações sugeridas, mas precisa usar o menu de categorias para abri-las.
 - **A base só é lida ao iniciar o programa.** Depois de editar o JSON, é preciso fechar e abrir o programa de novo.
 - **Funciona só no terminal**, sem interface gráfica.
-
----
-
-## Como melhorar a base (sem mexer no código)
-
-1. Para uma pergunta passar a ser encontrada, adicione uma palavra-chave (sem acento, em minúsculas) na lista `palavras_chave` da orientação certa de `data/base_conhecimento.json`.
-2. Para criar uma orientação nova, copie um registro, troque o `id` por um número novo e preencha **todos** os campos, incluindo uma `fonte` oficial e `verificado_em`.
-3. Salve o arquivo e rode `python main.py` de novo.
 
 ---
 
