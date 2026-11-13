@@ -38,5 +38,75 @@
     "ajudou": true,
     "tentativas": 1,
     "tempo_segundos": 12.1
+  },
+  {
+    "data": "2026-11-13 14:19:08",
+    "origem": "pergunta",
+    "pergunta": "Nexo quero que me informe como devo fazer para tirar minha carteira de trabalho?",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo_segundos": 122.7
+  },
+  {
+    "data": "2026-11-13 14:20:29",
+    "origem": "pergunta",
+    "pergunta": "nexo como faco para tirar meu primeiro documento do RG",
+    "id_orientacao": null,
+    "encontrou": false,
+    "ajudou": false,
+    "tentativas": 1,
+    "tempo_segundos": 81.5
+  },
+  {
+    "data": "2026-11-13 14:22:53",
+    "origem": "categoria",
+    "pergunta": "Salário e benefícios",
+    "id_orientacao": 9,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo_segundos": 63.0
+  },
+  {
+    "data": "2026-11-13 14:26:50",
+    "origem": "pergunta",
+    "pergunta": "jovem aprendiz",
+    "id_orientacao": 4,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo_segundos": 33.4
+  },
+  {
+    "data": "2026-11-13 14:27:34",
+    "origem": "categoria",
+    "pergunta": "Salário e benefícios",
+    "id_orientacao": 9,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo_segundos": 21.5
+  },
+  {
+    "data": "2026-11-13 14:36:49",
+    "origem": "pergunta",
+    "pergunta": "cai em golpe para uma vaga",
+    "id_orientacao": 11,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo_segundos": 24.8
+  },
+  {
+    "data": "2026-11-13 14:37:38",
+    "origem": "categoria",
+    "pergunta": "Golpes e segurança",
+    "id_orientacao": 12,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo_segundos": 6.1
   }
 ]

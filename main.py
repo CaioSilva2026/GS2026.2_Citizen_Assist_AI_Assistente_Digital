@@ -29,23 +29,20 @@ def mostrar_menu():
     print("0. Sair (antes, você poderá avaliar sua experiência)")
 
 def main():
-    # Garante que a pasta de dados exista.
     os.makedirs("data", exist_ok=True)
 
-    # Inicializa a base de conhecimento.
     base = BaseConhecimento("data/base_conhecimento.json")
     if not base.carregar():
         print("\nNão foi possível carregar a base de conhecimento.")
         print("Verifique se o arquivo data/base_conhecimento.json existe")
         print("e se o conteúdo está no formato JSON correto.")
         return
-    # Inicializa o assistente.
     assistente = Assistente("Nexo", base)
     mostrar_boas_vindas(assistente)
     try:
         executar_menu(assistente)
     except (KeyboardInterrupt, EOFError):
-        # Ctrl+C ou fim da entrada: encerra com segurança, sem erro na tela.
+
         print("\n\nEntrada interrompida. Encerrando o Nexo.")
         assistente.exportar_csv()
 

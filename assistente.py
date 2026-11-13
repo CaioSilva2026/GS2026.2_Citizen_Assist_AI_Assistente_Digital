@@ -3,9 +3,9 @@ import json
 import time
 from datetime import datetime
 
-# Limites da confiança (explicados no README).
-PONTOS_MINIMOS = 3   # abaixo disso: "não encontrei"
-PONTOS_ALTA = 6      # a partir daqui: confiança ALTA
+
+PONTOS_MINIMOS = 3
+PONTOS_ALTA = 6
 
 CAMPOS_HISTORICO = ["data", "origem", "pergunta", "id_orientacao",
                     "encontrou", "ajudou", "tentativas", "tempo_segundos"]
@@ -24,14 +24,14 @@ class Assistente:
         self.carregar_historico()
         self.carregar_notas()
 
-    # ---------- histórico ----------
+
     def carregar_historico(self):
         try:
             with open(self.caminho_historico, "r", encoding="utf-8") as f:
                 dados = json.load(f)
             if not isinstance(dados, list):
                 dados = []
-            # descarta registros incompletos, para os indicadores não quebrarem
+
             self.historico = [
                 a for a in dados
                 if isinstance(a, dict)
@@ -63,7 +63,6 @@ class Assistente:
         self.historico.append(atendimento)
         self.salvar_historico()
 
-    # ---------- notas de facilidade ----------
     def carregar_notas(self):
         try:
             with open(self.caminho_notas, "r", encoding="utf-8") as f:
@@ -93,7 +92,6 @@ class Assistente:
         self.notas.append(nota)
         self.salvar_notas()
 
-    # ---------- validações ----------
     def tem_dado_pessoal(self, texto):
         digitos = sum(1 for c in texto if c.isdecimal())
         return digitos >= 8 or "@" in texto
@@ -112,18 +110,16 @@ class Assistente:
                 return int(texto)
             print(f"Opção inválida. Digite um número de 0 a {maximo}.")
 
-    # ---------- atendimento por pergunta ----------
     def perguntar(self):
         print("\n=== Escrever uma dúvida ===")
         print("Para voltar ao menu, digite 0.")
-        # Cada volta do while é UM atendimento (pode ter várias tentativas).
         while True:
             if not self.atender_pergunta():
                 return
             print("\nVocê pode fazer outra pergunta.")
 
     def ler_pergunta(self):
-        """Lê o texto da dúvida. Repete até vir algo válido (ou 0 para voltar)."""
+
         while True:
             texto = input(
                 "\nQual sua dúvida sobre o primeiro emprego? (0 para voltar): "
@@ -138,14 +134,14 @@ class Assistente:
                 return texto
 
     def atender_pergunta(self):
-        """Faz um atendimento. Devolve False se a pessoa digitou 0 para voltar."""
+
         inicio = time.time()
         tentativas = 0
         ultima_pergunta = ""
         while True:
             texto = self.ler_pergunta()
             if texto == "0":
-                if tentativas > 0:  # buscou, não achou e desistiu
+                if tentativas > 0:
                     self.registrar("pergunta", ultima_pergunta, None, False,
                                    False, tentativas,
                                    round(time.time() - inicio, 1))
@@ -177,7 +173,7 @@ class Assistente:
         print("Você também pode digitar 0 para voltar.")
 
     def mostrar_resposta(self, resultados):
-        """Mostra a melhor orientação e até 2 alternativas. Devolve a melhor."""
+
         pontos, melhor = resultados[0]
         nivel = "ALTA" if pontos >= PONTOS_ALTA else "MÉDIA"
         print(f"\nConfiança da resposta: {nivel} ({pontos} pontos)")
@@ -190,7 +186,7 @@ class Assistente:
                 print(f" - {o.titulo} ({p} pontos)")
         return melhor
 
-    # ---------- navegação por categorias ----------
+
     def navegar(self):
         while True:
             categorias = self.base.categorias()
@@ -222,7 +218,6 @@ class Assistente:
                 self.registrar("categoria", categoria, orientacao.id, True,
                                ajudou, 1, round(time.time() - inicio, 1))
 
-    # ---------- indicadores ----------
     def indicadores(self):
         total = len(self.historico)
         if total == 0:
@@ -236,8 +231,7 @@ class Assistente:
         pct_ajudou = len(ajudaram) / total * 100
         tentativas = sum(a["tentativas"] for a in self.historico) / total
 
-        # "Resposta encontrada" só faz sentido para perguntas em texto livre:
-        # a navegação por categorias sempre "encontra".
+
         if perguntas:
             achadas = [a for a in perguntas if a["encontrou"]]
             pct_encontrada = f"{len(achadas) / len(perguntas) * 100:.1f}%"
@@ -273,7 +267,6 @@ class Assistente:
         else:
             print("  (nenhuma)")
 
-    # ---------- exportar CSV ----------
     def exportar_csv(self, caminho="data/atendimentos.csv"):
         if not self.historico:
             print("\nNada para exportar ainda.")

@@ -4,7 +4,6 @@ import unicodedata
 
 from orientacao import Orientacao
 
-# Palavras comuns que não devem contar ponto no título (regra do +1).
 PALAVRAS_IGNORADAS = {
     "como", "para", "com", "uma", "qual",
     "quais", "onde", "quando", "meu", "minha",
@@ -17,7 +16,7 @@ CAMPOS_TEXTO = ["categoria", "titulo", "resposta", "onde", "fonte",
 
 
 def item_valido(item):
-    """Confere se um registro do JSON tem todos os campos com o tipo certo."""
+
     if not isinstance(item, dict):
         return False
     if not isinstance(item.get("id"), int):
@@ -26,7 +25,7 @@ def item_valido(item):
         valor = item.get(campo)
         if not isinstance(valor, str) or valor.strip() == "":
             return False
-    # palavras_chave precisa ser LISTA de textos (uma string iteraria letra por letra)
+
     chaves = item.get("palavras_chave")
     if not isinstance(chaves, list) or len(chaves) == 0:
         return False
@@ -116,12 +115,10 @@ class BaseConhecimento:
         titulo_p = preparar(orientacao.titulo)
         pontos = 0
 
-        # Regra 1: palavra-chave que aparece na pergunta (+3)
         for palavra in orientacao.palavras_chave:
             if preparar(palavra) in pergunta_p:
                 pontos += 3
 
-        # Regra 2: palavra importante da pergunta (4+ letras) no título (+1)
         palavras_titulo = set(titulo_p.split())
         for palavra in set(normalizar(pergunta).split()):
             if (
