@@ -3,6 +3,13 @@ import json
 import time
 from datetime import datetime
 
+# Limites da confiança (explicados no README).
+PONTOS_MINIMOS = 3   # abaixo disso: "não encontrei"
+PONTOS_ALTA = 6      # a partir daqui: confiança ALTA
+
+CAMPOS_HISTORICO = ["data", "origem", "pergunta", "id_orientacao",
+                    "encontrou", "ajudou", "tentativas", "tempo_segundos"]
+
 
 class Assistente:
 
@@ -22,8 +29,16 @@ class Assistente:
         try:
             with open(self.caminho_historico, "r", encoding="utf-8") as f:
                 dados = json.load(f)
-            self.historico = dados if isinstance(dados, list) else []
-        except (FileNotFoundError, json.JSONDecodeError, OSError):
+            if not isinstance(dados, list):
+                dados = []
+            # descarta registros incompletos, para os indicadores não quebrarem
+            self.historico = [
+                a for a in dados
+                if isinstance(a, dict)
+                and all(campo in a for campo in CAMPOS_HISTORICO)
+            ]
+        except (FileNotFoundError, json.JSONDecodeError, OSError,
+                UnicodeDecodeError):
             self.historico = []
 
     def salvar_historico(self):
@@ -53,8 +68,14 @@ class Assistente:
         try:
             with open(self.caminho_notas, "r", encoding="utf-8") as f:
                 dados = json.load(f)
-            self.notas = dados if isinstance(dados, list) else []
-        except (FileNotFoundError, json.JSONDecodeError, OSError):
+            if not isinstance(dados, list):
+                dados = []
+            self.notas = [
+                n for n in dados
+                if isinstance(n, int) and 1 <= n <= 5
+            ]
+        except (FileNotFoundError, json.JSONDecodeError, OSError,
+                UnicodeDecodeError):
             self.notas = []
 
     def salvar_notas(self):
@@ -95,76 +116,79 @@ class Assistente:
     def perguntar(self):
         print("\n=== Escrever uma dúvida ===")
         print("Para voltar ao menu, digite 0.")
-
+        # Cada volta do while é UM atendimento (pode ter várias tentativas).
         while True:
-            inicio = time.time()
-            tentativas = 0
-            ultima_pergunta = ""
-            while True:
-                texto = input(
-                    "\nQual sua dúvida sobre o primeiro emprego? (0 para voltar): "
-                ).strip()
-                if texto == "0":
-                    if tentativas > 0:
-                        self.registrar(
-                            "pergunta",
-                            ultima_pergunta,
-                            None,
-                            False,
-                            False,
-                            tentativas,
-                            round(time.time() - inicio, 1)
-                        )
-                    return
-                if texto == "":
-                    print("Digite alguma coisa.")
-                    continue
-                if self.tem_dado_pessoal(texto):
-                    print("Não digite CPF, telefone ou e-mail.")
-                    continue
-                tentativas += 1
-                ultima_pergunta = texto
-                resultados = self.base.buscar(texto)
-                if not resultados or resultados[0][0] < 3:
-                    print("\nNão encontrei uma orientação para essa dúvida.")
-                    print("Eu só respondo o que está na minha base, "
-                          "e não invento respostas.")
-                    print("Assuntos que eu conheço: "
-                          + ", ".join(self.base.categorias()) + ".")
-                    print("Tente usar outras palavras (ex.: 'FGTS', "
-                          "'carteira de trabalho', 'vaga falsa')")
-                    print("ou use a opção 2 do menu para ver tudo por assunto.")
-                    print("Você também pode digitar 0 para voltar.")
-                    continue
-                pontos, melhor = resultados[0]
-                nivel = "ALTA" if pontos >= 6 else "MÉDIA"
-                print(f"\nConfiança da resposta: {nivel} ({pontos} pontos)")
-                melhor.exibir()
-
-                alternativas = [
-                    r for r in resultados[1:3] if r[0] >= 3
-                ]
-                if alternativas:
-                    print("\nOutras orientações que podem ajudar:")
-
-                    for p, o in alternativas:
-                        print(f" - {o.titulo} ({p} pontos)")
-
-                ajudou = self.ler_sim_nao(
-                    "\nEssa orientação respondeu sua dúvida? (s/n): "
-                )
-                self.registrar(
-                    "pergunta",
-                    ultima_pergunta,
-                    melhor.id,
-                    True,
-                    ajudou,
-                    tentativas,
-                    round(time.time() - inicio, 1)
-                )
-                print("\nAtendimento registrado.")
-                break
+            if not self.atender_pergunta():
+                return
             print("\nVocê pode fazer outra pergunta.")
+
+    def ler_pergunta(self):
+        """Lê o texto da dúvida. Repete até vir algo válido (ou 0 para voltar)."""
+        while True:
+            texto = input(
+                "\nQual sua dúvida sobre o primeiro emprego? (0 para voltar): "
+            ).strip()
+            if texto == "0":
+                return texto
+            if texto == "":
+                print("Digite alguma coisa.")
+            elif self.tem_dado_pessoal(texto):
+                print("Não digite CPF, telefone ou e-mail.")
+            else:
+                return texto
+
+    def atender_pergunta(self):
+        """Faz um atendimento. Devolve False se a pessoa digitou 0 para voltar."""
+        inicio = time.time()
+        tentativas = 0
+        ultima_pergunta = ""
+        while True:
+            texto = self.ler_pergunta()
+            if texto == "0":
+                if tentativas > 0:  # buscou, não achou e desistiu
+                    self.registrar("pergunta", ultima_pergunta, None, False,
+                                   False, tentativas,
+                                   round(time.time() - inicio, 1))
+                return False
+            tentativas += 1
+            ultima_pergunta = texto
+            resultados = self.base.buscar(texto)
+            if not resultados or resultados[0][0] < PONTOS_MINIMOS:
+                self.mostrar_nao_encontrei()
+                continue
+            melhor = self.mostrar_resposta(resultados)
+            ajudou = self.ler_sim_nao(
+                "\nEssa orientação respondeu sua dúvida? (s/n): "
+            )
+            self.registrar("pergunta", ultima_pergunta, melhor.id, True,
+                           ajudou, tentativas, round(time.time() - inicio, 1))
+            print("\nAtendimento registrado.")
+            return True
+
+    def mostrar_nao_encontrei(self):
+        print("\nNão encontrei uma orientação para essa dúvida.")
+        print("Eu só respondo o que está na minha base, "
+              "e não invento respostas.")
+        print("Assuntos que eu conheço: "
+              + ", ".join(self.base.categorias()) + ".")
+        print("Tente usar outras palavras (ex.: 'FGTS', "
+              "'carteira de trabalho', 'vaga falsa')")
+        print("ou use a opção 2 do menu para ver tudo por assunto.")
+        print("Você também pode digitar 0 para voltar.")
+
+    def mostrar_resposta(self, resultados):
+        """Mostra a melhor orientação e até 2 alternativas. Devolve a melhor."""
+        pontos, melhor = resultados[0]
+        nivel = "ALTA" if pontos >= PONTOS_ALTA else "MÉDIA"
+        print(f"\nConfiança da resposta: {nivel} ({pontos} pontos)")
+        melhor.exibir()
+
+        alternativas = [r for r in resultados[1:3] if r[0] >= PONTOS_MINIMOS]
+        if alternativas:
+            print("\nOutras orientações que podem ajudar:")
+            for p, o in alternativas:
+                print(f" - {o.titulo} ({p} pontos)")
+        return melhor
 
     # ---------- navegação por categorias ----------
     def navegar(self):
@@ -254,11 +278,10 @@ class Assistente:
         if not self.historico:
             print("\nNada para exportar ainda.")
             return
-        campos = ["data", "origem", "pergunta", "id_orientacao", "encontrou",
-                  "ajudou", "tentativas", "tempo_segundos"]
         try:
             with open(caminho, "w", newline="", encoding="utf-8-sig") as f:
-                escritor = csv.DictWriter(f, fieldnames=campos)
+                escritor = csv.DictWriter(f, fieldnames=CAMPOS_HISTORICO,
+                                      extrasaction="ignore")
                 escritor.writeheader()
                 for a in self.historico:
                     escritor.writerow(a)

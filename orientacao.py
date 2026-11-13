@@ -1,8 +1,8 @@
 class Orientacao:
 
-    def __init__(self, id, categoria, titulo, palavras_chave, resposta,
+    def __init__(self, id_orientacao, categoria, titulo, palavras_chave, resposta,
                  documentos, onde, fonte, verificado_em):
-        self.id = id
+        self.id = id_orientacao
         self.categoria = categoria
         self.titulo = titulo
         self.palavras_chave = palavras_chave

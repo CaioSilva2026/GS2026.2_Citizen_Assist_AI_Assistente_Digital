@@ -12,6 +12,34 @@ PALAVRAS_IGNORADAS = {
     "por", "tem", "ser", "fazer"
 }
 
+CAMPOS_TEXTO = ["categoria", "titulo", "resposta", "onde", "fonte",
+                "verificado_em"]
+
+
+def item_valido(item):
+    """Confere se um registro do JSON tem todos os campos com o tipo certo."""
+    if not isinstance(item, dict):
+        return False
+    if not isinstance(item.get("id"), int):
+        return False
+    for campo in CAMPOS_TEXTO:
+        valor = item.get(campo)
+        if not isinstance(valor, str) or valor.strip() == "":
+            return False
+    # palavras_chave precisa ser LISTA de textos (uma string iteraria letra por letra)
+    chaves = item.get("palavras_chave")
+    if not isinstance(chaves, list) or len(chaves) == 0:
+        return False
+    if not all(isinstance(p, str) and p.strip() for p in chaves):
+        return False
+    documentos = item.get("documentos")
+    if not isinstance(documentos, list):
+        return False
+    if not all(isinstance(d, str) for d in documentos):
+        return False
+    return True
+
+
 def normalizar(texto):
 
     texto = texto.lower().strip()
@@ -48,8 +76,15 @@ class BaseConhecimento:
         try:
             with open(self.caminho, "r", encoding="utf-8") as arquivo:
                 dados = json.load(arquivo)
+            if not isinstance(dados, list) or len(dados) == 0:
+                print("Erro: a base precisa ser uma lista com pelo menos 1 orientação.")
+                return False
             orientacoes = []
-            for item in dados:
+            for posicao, item in enumerate(dados, start=1):
+                if not item_valido(item):
+                    print(f"Erro: o registro número {posicao} da base está "
+                          "com campos faltando ou com o tipo errado.")
+                    return False
                 orientacoes.append(Orientacao(
                     item["id"], item["categoria"], item["titulo"],
                     item["palavras_chave"], item["resposta"],
@@ -60,9 +95,8 @@ class BaseConhecimento:
             return True
         except FileNotFoundError:
             print("Erro: arquivo da base de conhecimento não encontrado.")
-        except (json.JSONDecodeError, KeyError, TypeError,
-                UnicodeDecodeError):
-            print("Erro: arquivo da base está corrompido ou com campos faltando.")
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            print("Erro: arquivo da base está corrompido (JSON inválido).")
         except OSError:
             print("Erro: não foi possível abrir o arquivo da base.")
         return False

@@ -1,4 +1,3 @@
-
 import os
 
 from base_conhecimento import BaseConhecimento
@@ -27,9 +26,7 @@ def mostrar_menu():
     print("2. Consultar assuntos por categoria")
     print("3. Ver indicadores de atendimento")
     print("4. Exportar atendimentos para CSV")
-    print("0. Sair")
-
-    print("\nAntes de sair, você poderá avaliar sua experiência.")
+    print("0. Sair (antes, você poderá avaliar sua experiência)")
 
 def main():
     # Garante que a pasta de dados exista.
@@ -45,10 +42,17 @@ def main():
     # Inicializa o assistente.
     assistente = Assistente("Nexo", base)
     mostrar_boas_vindas(assistente)
-    # Menu principal.
+    try:
+        executar_menu(assistente)
+    except (KeyboardInterrupt, EOFError):
+        # Ctrl+C ou fim da entrada: encerra com segurança, sem erro na tela.
+        print("\n\nEntrada interrompida. Encerrando o Nexo.")
+        assistente.exportar_csv()
+
+
+def executar_menu(assistente):
     while True:
         mostrar_menu()
-
         opcao = assistente.ler_opcao(
             "Digite o número da opção desejada: ",
             4
@@ -70,5 +74,7 @@ def main():
             print("Sua opinião ajuda a melhorar o assistente.")
             print("=" * 60)
             break
+
+
 if __name__ == "__main__":
     main()
