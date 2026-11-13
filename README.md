@@ -14,7 +14,7 @@ O projeto se chama **Citizen Assist AI**, e o assistente que conversa com o usu�
 
 ---
 
-##  Público e problema escolhidos
+## Público e problema escolhidos
 
 **Público:** jovens que estão buscando ou começando o primeiro emprego.
 
@@ -26,21 +26,13 @@ A informação existe, mas está espalhada em vários sites, em linguagem técni
 
 ---
 
-##  ODS relacionados
-
-- **ODS 8 – Trabalho decente e crescimento econômico:** facilita o acesso ao emprego formal e aos direitos trabalhistas.
-- **ODS 10 – Redução das desigualdades:** informação clara e gratuita para quem tem menos acesso a orientação.
-- **ODS 16 – Paz, justiça e instituições eficazes:** acesso à informação e orientação sobre como denunciar golpes.
-
----
-
 ## Como executar
 
 Requisitos: **Python 3.8 ou superior**. Não precisa instalar nenhuma biblioteca (só a biblioteca padrão).
 
 ```bash
-git clone <link-do-repositorio>
-cd citizen-assist-ai
+git clone https://github.com/CaioSilva2026/GS2026.2_Citizen_Assist_AI_Assistente_Digital.git
+cd GS2026.2_Citizen_Assist_AI_Assistente_Digital
 python main.py
 ```
 
@@ -56,7 +48,7 @@ Execute sempre a partir da pasta do projeto, porque os caminhos dos arquivos sã
 0. Sair                              (pede nota de facilidade e exporta o CSV)
 ```
 
-Em todas as telas, **digitar 0 volta** para a tela anterior.
+Em todas as telas, **digitar 0 volta** para a tela anterior. Se a pessoa apertar `Ctrl+C`, o programa encerra com uma mensagem, sem mostrar erro.
 
 ### Exemplo de uso
 
@@ -82,11 +74,12 @@ Não digite CPF, telefone ou e-mail.
 
 ---
 
-##  Estrutura do projeto
+## Estrutura do projeto
 
 ```
 citizen-assist-ai/
 ├── README.md
+├── .gitignore               # ignora .idea/ e __pycache__/
 ├── main.py                  # menu principal
 ├── orientacao.py            # classe Orientacao
 ├── base_conhecimento.py     # classe BaseConhecimento + normalizar()
@@ -100,7 +93,7 @@ citizen-assist-ai/
 
 ---
 
-##  Como o código funciona
+## Como o código funciona
 
 ### As três classes e a composição
 
@@ -158,7 +151,7 @@ Todas têm pelo menos 3 palavras-chave (a maioria tem bem mais), fonte oficial e
 
 ---
 
-##  A busca com pontuação
+## A busca com pontuação
 
 A "inteligência" do Nexo é **baseada em regras**, sem nenhum modelo de IA. A pergunta é comparada com cada orientação, cada uma recebe pontos, e a de maior pontuação é exibida.
 
@@ -209,17 +202,18 @@ O método `buscar()` devolve uma **lista de tuplas** `(pontos, orientacao)`, da 
 
 ---
 
-##  Regras de atendimento
+## Regras de atendimento
 
 - **Entradas inválidas nunca encerram o programa.** Letras, números fora da faixa, resposta vazia ou algo diferente de `s`/`n` só geram um aviso, e a pergunta é refeita.
 - **Dados pessoais são bloqueados.** O assistente nunca pede nome, CPF, telefone ou e-mail. Se a pergunta tiver **8 ou mais dígitos** ou um **@**, ela é recusada e **não é registrada**.
 - **Transparência.** Toda resposta mostra a fonte, a data de verificação e o aviso "este assistente NÃO é um canal oficial".
-- **Arquivos à prova de erro.** Se o JSON da base não existir ou estiver corrompido, o programa mostra uma mensagem clara em vez de quebrar. Se o histórico ou as notas estiverem ausentes ou estragados, o programa começa do zero.
+- **Arquivos à prova de erro.** Se o JSON da base não existir, estiver corrompido, estiver vazio ou tiver um registro com campo faltando ou do tipo errado (por exemplo, `palavras_chave` como texto em vez de lista), o programa mostra uma mensagem clara em vez de quebrar. Se o histórico ou as notas estiverem ausentes ou estragados, o programa começa do zero e descarta registros incompletos.
+- **Interrupção segura.** `Ctrl+C` ou fim da entrada encerram o programa com uma mensagem e exportam o CSV.
 - **Navegação por categorias** com "0 para voltar" em todas as telas.
 
 ---
 
-##  Histórico, indicadores e CSV
+## Histórico, indicadores e CSV
 
 Cada atendimento é salvo em `data/historico.json` com: **data, origem** (`pergunta` ou `categoria`), **pergunta, id da orientação, se encontrou, se ajudou, tentativas** e **tempo em segundos**. Ao sair, o programa pede uma **nota de facilidade de 1 a 5** (guardada em `data/notas.json`) e exporta `data/atendimentos.csv` com `csv.DictWriter`.
 
@@ -238,36 +232,29 @@ Na pergunta em texto livre, se a pessoa não encontra a resposta e reformula, tu
 
 ---
 
-##  Teste com usuários
+## Teste com usuários
 
-Testamos o Nexo com **[N] pessoas de fora da equipe**, somando **[N] atendimentos**. Nenhum nome ou dado pessoal foi registrado.
+Testamos o Nexo com **[N] pessoas de fora da equipe**, somando **[N] atendimentos**. Cada pessoa escreveu as próprias perguntas, sem ver a base de conhecimento. Nenhum nome ou dado pessoal foi registrado.
 
-| Indicador | Resultado |
-|-----------|-----------|
-| Resposta encontrada | [__] % |
-| Taxa de acerto (ajudou) | [__] % |
-| Tempo médio para encontrar | [__] s |
-| Tentativas por atendimento | [__] |
-| Facilidade de uso (1 a 5) | [__] |
+| Indicador                  | Resultado       |
+|----------------------------|-----------------|
+| atendimentos               | [11]            |
+| Resposta encontrada (perguntas em texto livre)    | [	60,0 % (3 de 5)] % |
+| Taxa de acerto (ajudou) | [81,8 % (9 de 11)] |
+| Tempo médio para encontrar | [34,9 ]  s      |
+| Tentativas por atendimento  | [1,1]           |
+| Facilidade de uso (1 a 5)|   [5, 5, 4, 5]   |
 
-**Dúvidas sem solução registradas:**
 
-- [dúvida 1]
-- [dúvida 2]
+## Integrações com outras disciplinas
 
-**Melhoria feita a partir do teste:** [Exemplo: a pergunta "..." não foi encontrada, então adicionamos a palavra-chave "..." à orientação "...".]
-
----
-
-## 🔗 Integrações com outras disciplinas
-
-Nenhuma. O projeto usa apenas a biblioteca padrão do Python.
+Nenhuma.
 
 ---
 
 ## Fontes consultadas
 
-Todas as respostas vêm de fontes oficiais, conferidas pela equipe em **[12/11/2026]**:
+Todas as respostas vêm de fontes oficiais, conferidas pela equipe em **11/11/2026**:
 
 - Carteira de Trabalho Digital (gov.br): https://www.gov.br/pt-br/servicos/obter-a-carteira-de-trabalho
 - Tribunal Superior Eleitoral (título de eleitor): https://www.tse.jus.br/comunicacao/noticias/2022/Dezembro/ainda-nao-tem-titulo-de-eleitor-emita-o-documento-de-forma-gratuita-e-sem-sair-de-casa
@@ -280,13 +267,14 @@ Todas as respostas vêm de fontes oficiais, conferidas pela equipe em **[12/11/2
 
 ---
 
-##  Decisões técnicas
+## Decisões técnicas
 
 - **Busca por regras, sem IA externa:** a pontuação é simples, previsível e explicável. Dá para rastrear cada resposta até as palavras-chave que a geraram.
 - **"Não sei" em vez de inventar:** se nenhuma orientação chega a 3 pontos, o assistente admite que não encontrou. Preferimos isso a dar uma resposta errada sobre direitos trabalhistas.
 - **Espaços nas pontas do texto normalizado:** evita que uma palavra curta, como `sus`, "case" dentro de outra palavra.
 - **Palavras ignoradas e plural simples:** reduzem falsos acertos e falhas por causa do plural.
-- **`carregar()` só troca a lista de orientações no fim:** se o JSON falhar no meio, a base não fica pela metade.
+- **`carregar()` valida cada registro e só troca a lista de orientações no fim:** se o JSON falhar no meio, ou tiver um campo com tipo errado, a base não fica pela metade e a mensagem diz qual registro está errado.
+- **`perguntar()` dividido em métodos pequenos** (`ler_pergunta`, `atender_pergunta`, `mostrar_resposta`, `mostrar_nao_encontrei`), e os limites de confiança (3 e 6) ficam em constantes no topo do `assistente.py`.
 - **A base cresce com o uso:** as "dúvidas sem solução" mostram quais palavras-chave faltam. Para melhorar o assistente, basta editar o JSON, sem mexer no código.
 
 ---
@@ -299,11 +287,16 @@ Todas as respostas vêm de fontes oficiais, conferidas pela equipe em **[12/11/2
 - **Palavras comuns ainda podem somar ponto.** Mesmo com a lista de palavras ignoradas, uma palavra de 4 letras ou mais que apareça em vários títulos (como "emprego") pode dar +1. O limite mínimo de 3 pontos evita a maioria dos falsos acertos.
 - **Palavras-chave parecidas somam juntas.** Em "carteira de trabalho digital", por exemplo, tanto `carteira de trabalho` quanto `carteira de trabalho digital` pontuam.
 - **As regras mudam.** Prazos e valores (seguro-desemprego, FGTS, 13º) podem ser atualizados pelo governo. A data de verificação existe para a pessoa saber o quão recente é a informação.
+- **O filtro de dados pessoais é simples.** Ele bloqueia 8 ou mais dígitos no texto todo ou um `@`. Por isso uma pergunta como "lei 8.213 de 1991" (8 dígitos) também é bloqueada, e o usuário precisa reescrever.
+- **Nomes não são bloqueados.** O assistente nunca pede o nome, mas se alguém digitar "meu nome é ...", o texto é salvo no histórico. Por isso o aviso inicial pede para não informar dados pessoais.
+- **Palavras-chave muito específicas.** `tenho 16 anos` só casa com essa idade exata; quem digitar outra idade pode não ser encontrado.
+- **As alternativas só mostram o título.** A pessoa vê as outras orientações sugeridas, mas precisa usar o menu de categorias para abri-las.
+- **A base só é lida ao iniciar o programa.** Depois de editar o JSON, é preciso fechar e abrir o programa de novo.
 - **Funciona só no terminal**, sem interface gráfica.
 
 ---
 
-##  Como melhorar a base (sem mexer no código)
+## Como melhorar a base (sem mexer no código)
 
 1. Para uma pergunta passar a ser encontrada, adicione uma palavra-chave (sem acento, em minúsculas) na lista `palavras_chave` da orientação certa de `data/base_conhecimento.json`.
 2. Para criar uma orientação nova, copie um registro, troque o `id` por um número novo e preencha **todos** os campos, incluindo uma `fonte` oficial e `verificado_em`.
@@ -311,6 +304,6 @@ Todas as respostas vêm de fontes oficiais, conferidas pela equipe em **[12/11/2
 
 ---
 
-##  Vídeo técnico
+## Vídeo técnico
 
 Link (YouTube, não listado): [cole aqui o link]
